@@ -4,635 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Aastha!</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #ff6b6b;
-            --secondary: #4ecdc4;
-            --accent: #ffe66d;
-            --purple: #9b5de5;
-            --pink: #f15bb5;
-            --dark: #2a2d34;
-            --light: #f7f9fc;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: var(--dark);
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        /* Background Animation */
-        .background-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: float 15s infinite ease-in-out;
-        }
-
-        .floating-shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 10%;
-            left: 10%;
-            background: rgba(255, 107, 107, 0.2);
-            animation-delay: 0s;
-        }
-
-        .floating-shape:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 70%;
-            left: 80%;
-            background: rgba(78, 205, 196, 0.2);
-            animation-delay: 3s;
-        }
-
-        .floating-shape:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            top: 20%;
-            left: 85%;
-            background: rgba(255, 230, 109, 0.2);
-            animation-delay: 6s;
-        }
-
-        .floating-shape:nth-child(4) {
-            width: 100px;
-            height: 100px;
-            top: 80%;
-            left: 15%;
-            background: rgba(155, 93, 229, 0.2);
-            animation-delay: 9s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            33% {
-                transform: translateY(-30px) rotate(120deg);
-            }
-            66% {
-                transform: translateY(20px) rotate(240deg);
-            }
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header */
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 40px 20px;
-            position: relative;
-        }
-
-        .birthday-title {
-            font-size: 4rem;
-            color: white;
-            margin-bottom: 10px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            animation: titleGlow 3s infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            0% {
-                text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            }
-            100% {
-                text-shadow: 3px 3px 20px rgba(255,255,255,0.5);
-            }
-        }
-
-        .name {
-            color: var(--accent);
-            background: linear-gradient(45deg, var(--accent), var(--pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-            animation: namePulse 2s infinite;
-        }
-
-        @keyframes namePulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .birth-date {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.8);
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-
-        .from-laddu-header {
-            display: inline-block;
-            margin-top: 15px;
-        }
-
-        .laddu-signature {
-            background: linear-gradient(135deg, var(--primary), var(--pink));
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-            animation: signatureFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes signatureFloat {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Main Photo Section */
-        .photo-section {
-            display: flex;
-            justify-content: center;
-            margin: 60px 0;
-            position: relative;
-        }
-
-        .photo-frame {
-            position: relative;
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border: 10px solid white;
-            animation: photoFloat 8s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        @keyframes photoFloat {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            25% {
-                transform: translateY(-15px) rotate(2deg);
-            }
-            75% {
-                transform: translateY(10px) rotate(-2deg);
-            }
-        }
-
-        .profile-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .photo-frame:hover .profile-photo {
-            transform: scale(1.1);
-        }
-
-        .photo-decoration {
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            right: -15px;
-            bottom: -15px;
-            border: 4px solid var(--accent);
-            border-radius: 50%;
-            animation: rotate 20s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .laddu-message {
-            position: absolute;
-            bottom: -30px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 30px;
-            border-radius: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            font-style: italic;
-            font-weight: bold;
-            color: var(--primary);
-            z-index: 2;
-            animation: messageSlide 1s ease-out;
-        }
-
-        @keyframes messageSlide {
-            0% {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Favorite Things Section */
-        .favorites-section {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 50px 40px;
-            border-radius: 30px;
-            margin: 60px 0;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .favorites-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--purple));
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .section-header h2 {
-            font-size: 2.8rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 25%;
-            width: 50%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .laddu-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--secondary), var(--purple));
-            color: white;
-            padding: 8px 25px;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
-            animation: badgePulse 3s infinite;
-        }
-
-        @keyframes badgePulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .favorites-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .favorite-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .favorite-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--primary);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .favorite-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .favorite-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .favorite-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: iconBounce 2s infinite;
-        }
-
-        @keyframes iconBounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .favorite-card h3 {
-            font-size: 1.8rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .favorite-card p {
-            font-size: 1.2rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .favorite-details {
-            margin-top: 15px;
-            font-style: italic;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Enhanced Characteristics Section */
-        .characteristics-section {
-            margin: 80px 0;
-        }
-
-        .characteristics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .characteristic-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 35px 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .characteristic-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .characteristic-card:hover::after {
-            transform: scaleX(1);
-        }
-
-        .characteristic-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-
-        .char-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: iconSpin 4s infinite linear;
-        }
-
-        @keyframes iconSpin {
-            0% {
-                transform: rotate(0deg) scale(1);
-            }
-            50% {
-                transform: rotate(180deg) scale(1.1);
-            }
-            100% {
-                transform: rotate(360deg) scale(1);
-            }
-        }
-
-        .characteristic-card h3 {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .characteristic-card p {
-            color: #666;
-            line-height: 1.6;
-            font-size: 1.05rem;
-        }
-
-        .laddu-stamp {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            font-size: 0.9rem;
-            color: var(--secondary);
-            font-weight: bold;
-            opacity: 0.7;
-        }
-
-        /* Footer */
-        .website-footer {
-            text-align: center;
-            margin-top: 80px;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-        }
-
-        .footer-hearts {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            animation: heartsFloat 4s ease-in-out infinite;
-        }
-
-        .footer-candy {
-            font-size: 1.8rem;
-            margin-top: 20px;
-            animation: candyBounce 2s infinite;
-        }
-
-        @keyframes heartsFloat {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-
-        @keyframes candyBounce {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        /* Floating Elements */
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-element {
-            position: absolute;
-            font-size: 2rem;
-            animation: floatAround 25s infinite linear;
-            opacity: 0.7;
-        }
-
-        .floating-element:nth-child(1) {
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            top: 20%;
-            left: 85%;
-            animation-delay: 5s;
-        }
-
-        .floating-element:nth-child(3) {
-            top: 70%;
-            left: 10%;
-            animation-delay: 10s;
-        }
-
-        .floating-element:nth-child(4) {
-            top: 80%;
-            left: 80%;
-            animation-delay: 15s;
-        }
-
-        .floating-element:nth-child(5) {
-            top: 40%;
-            left: 90%;
-            animation-delay: 20s;
-        }
-
-        @keyframes floatAround {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(100px, 100px) rotate(90deg);
-            }
-            50% {
-                transform: translate(0, 200px) rotate(180deg);
-            }
-            75% {
-                transform: translate(-100px, 100px) rotate(270deg);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .birthday-title {
-                font-size: 2.8rem;
-            }
-            
-            .photo-frame {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .favorites-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .characteristics-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-header h2 {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .birthday-title {
-                font-size: 2.2rem;
-            }
-            
-            .photo-frame {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .favorite-card, .characteristic-card {
-                padding: 20px 15px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Background Animation -->
@@ -648,20 +20,63 @@
         <header>
             <h1 class="birthday-title">Happy Birthday <span class="name">Aastha</span>!</h1>
             <p class="birth-date">Born on November 1, 2005</p>
-            <div class="from-laddu-header">
-                <span class="laddu-signature">From Your Laddu 🍬</span>
-            </div>
         </header>
 
         <main>
             <!-- Photo Section -->
             <section class="photo-section">
                 <div class="photo-frame">
-                    <img src="Bundi.jpeg" alt="Aastha" class="profile-photo">
+                    <img src="Bundi.jpg" alt="Aastha" class="profile-photo">
                     <div class="photo-decoration"></div>
                 </div>
-                <div class="laddu-message">
-                    To the most beautiful person in my life 💝
+            </section>
+
+            <!-- Photo Gallery Section -->
+            <section class="gallery-section">
+                <h2>Beautiful Memories</h2>
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="Bundi1.jpeg" alt="Aastha Memory 1" class="gallery-photo">
+                        <div class="photo-overlay">
+                            <span>✨ Beautiful Smile ✨</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Bundi2.jpeg" alt="Aastha Memory 2" class="gallery-photo">
+                        <div class="photo-overlay">
+                            <span>🌟 Radiant Energy 🌟</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Bundi3.jpeg" alt="Aastha Memory 3" class="gallery-photo">
+                        <div class="photo-overlay">
+                            <span>💫 Charming Presence 💫</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Bundi4.jpeg" alt="Aastha Memory 4" class="gallery-photo">
+                        <div class="photo-overlay">
+                            <span>🎀 Sweet Moments 🎀</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Bundi5.jpeg" alt="Aastha Memory 5" class="gallery-photo">
+                        <div class="photo-overlay">
+                            <span>🌺 Lovely Spirit 🌺</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Bundi6.jpeg" alt="Aastha Memory 6" class="gallery-photo">
+                        <div class="photo-overlay">
+                            <span>🦋 Beautiful Soul 🦋</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Bundi7.jpeg" alt="Aastha Memory 7" class="gallery-photo">
+                        <div class="photo-overlay">
+                            <span>💖 Precious Memories 💖</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -669,26 +84,39 @@
             <section class="favorites-section">
                 <div class="section-header">
                     <h2>Favorite Things</h2>
-                    <div class="laddu-badge">Laddu's Observations</div>
                 </div>
                 <div class="favorites-grid">
                     <div class="favorite-card">
                         <div class="favorite-icon">🌸</div>
                         <h3>Flowers</h3>
                         <p>Lotus, Peonies, and other beautiful blooms</p>
-                        <div class="favorite-details">Nature's perfection, just like you</div>
+                        <div class="favorite-details">Nature's perfection</div>
                     </div>
                     <div class="favorite-card">
                         <div class="favorite-icon">📏</div>
                         <h3>Height</h3>
                         <p>Approximately 5'3" and still growing</p>
-                        <div class="favorite-details">Perfect height to hug</div>
+                        <div class="favorite-details">Perfect and graceful</div>
                     </div>
                     <div class="favorite-card">
                         <div class="favorite-icon">⚖️</div>
                         <h3>Weight</h3>
                         <p>Around 45 kg of pure elegance</p>
-                        <div class="favorite-details">Light as a feather, strong as steel</div>
+                        <div class="favorite-details">Light and strong</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Zodiac Section -->
+            <section class="zodiac-section">
+                <h2>Zodiac Sign: Scorpio ♏</h2>
+                <div class="zodiac-info">
+                    <p>As a Scorpio born on November 1st, you're passionate, determined, and have a magnetic personality. You're known for your loyalty and emotional depth.</p>
+                    <div class="zodiac-traits">
+                        <div class="trait">Passionate</div>
+                        <div class="trait">Resourceful</div>
+                        <div class="trait">Brave</div>
+                        <div class="trait">Loyal</div>
                     </div>
                 </div>
             </section>
@@ -697,67 +125,140 @@
             <section class="characteristics-section">
                 <div class="section-header">
                     <h2>Beautiful Characteristics</h2>
-                    <div class="laddu-badge">What Makes You Special</div>
                 </div>
                 <div class="characteristics-grid">
                     <div class="characteristic-card">
                         <div class="char-icon">💖</div>
                         <h3>Compassionate Heart</h3>
                         <p>You have an incredible capacity for empathy and always put others before yourself.</p>
-                        <div class="laddu-stamp">- Laddu</div>
                     </div>
                     <div class="characteristic-card">
                         <div class="char-icon">🌟</div>
                         <h3>Radiant Energy</h3>
                         <p>Your positive energy lights up every room you enter and inspires everyone around you.</p>
-                        <div class="laddu-stamp">- Laddu</div>
                     </div>
                     <div class="characteristic-card">
                         <div class="char-icon">🎨</div>
                         <h3>Creative Soul</h3>
                         <p>You see beauty in everything and have a unique way of expressing yourself.</p>
-                        <div class="laddu-stamp">- Laddu</div>
                     </div>
                     <div class="characteristic-card">
                         <div class="char-icon">💪</div>
                         <h3>Inner Strength</h3>
                         <p>You face challenges with grace and always emerge stronger than before.</p>
-                        <div class="laddu-stamp">- Laddu</div>
                     </div>
                     <div class="characteristic-card">
                         <div class="char-icon">🤝</div>
                         <h3>Loyal Companion</h3>
                         <p>Once you care about someone, you're there for them through thick and thin.</p>
-                        <div class="laddu-stamp">- Laddu</div>
                     </div>
                     <div class="characteristic-card">
                         <div class="char-icon">🌈</div>
                         <h3>Joyful Spirit</h3>
                         <p>Your laughter is contagious and you find happiness in the simplest moments.</p>
-                        <div class="laddu-stamp">- Laddu</div>
                     </div>
                     <div class="characteristic-card">
                         <div class="char-icon">🧠</div>
                         <h3>Brilliant Mind</h3>
                         <p>You're incredibly intelligent and have a unique perspective on the world.</p>
-                        <div class="laddu-stamp">- Laddu</div>
                     </div>
                     <div class="characteristic-card">
                         <div class="char-icon">✨</div>
                         <h3>Magical Presence</h3>
                         <p>There's something truly special about you that can't be described in words.</p>
-                        <div class="laddu-stamp">- Laddu</div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Attributes Section -->
+            <section class="attributes-section">
+                <h2>Attributes</h2>
+                <div class="attributes-grid">
+                    <div class="attribute-card">
+                        <h3>Kind-hearted</h3>
+                        <p>Always thinking of others with compassion</p>
+                    </div>
+                    <div class="attribute-card">
+                        <h3>Intelligent</h3>
+                        <p>Quick-witted and insightful in all situations</p>
+                    </div>
+                    <div class="attribute-card">
+                        <h3>Creative</h3>
+                        <p>Bringing imagination and innovation to everything</p>
+                    </div>
+                    <div class="attribute-card">
+                        <h3>Resilient</h3>
+                        <p>Strong in facing challenges and overcoming obstacles</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Good Things Section -->
+            <section class="good-things-section">
+                <h2>All the Wonderful Things About Aastha</h2>
+                <div class="good-things-list">
+                    <div class="good-thing">
+                        <span class="icon">✨</span>
+                        <p>Your smile brightens up any room</p>
+                    </div>
+                    <div class="good-thing">
+                        <span class="icon">💖</span>
+                        <p>You have a heart of gold that cares for everyone</p>
+                    </div>
+                    <div class="good-thing">
+                        <span class="icon">🌟</span>
+                        <p>Your determination inspires those around you</p>
+                    </div>
+                    <div class="good-thing">
+                        <span class="icon">🎨</span>
+                        <p>You bring creativity and beauty to the world</p>
+                    </div>
+                    <div class="good-thing">
+                        <span class="icon">🤝</span>
+                        <p>You're a loyal friend who can always be counted on</p>
+                    </div>
+                    <div class="good-thing">
+                        <span class="icon">🌈</span>
+                        <p>You make ordinary moments extraordinary</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Birthday Message -->
+            <section class="message-section">
+                <div class="birthday-message">
+                    <h2>A Special Birthday Wish</h2>
+                    <p>Dear Aastha,</p>
+                    <p>On your special day, may you be surrounded by love, laughter, and all the happiness you deserve. You're an incredible person who brings so much joy to everyone around you.</p>
+                    <p>May this year bring you closer to your dreams and fill your life with beautiful moments. You deserve all the wonderful things life has to offer!</p>
+                    <p class="signature">With lots of love and best wishes</p>
                 </div>
             </section>
         </main>
 
+        <!-- Age Counter -->
+        <div class="age-counter">
+            <p>Today you are <span id="age">18</span> years young!</p>
+        </div>
+
         <!-- Footer -->
         <footer class="website-footer">
             <div class="footer-hearts">💖 💝 💖 💝 💖</div>
-            <p>Made with endless love by Laddu</p>
+            <p>Made with love for Aastha</p>
+            <div class="from-laddu-footer">
+                <span class="laddu-signature">From Laddu 🍬</span>
+            </div>
             <div class="footer-candy">🍬 🍭 🍫 🎂 🍬</div>
         </footer>
+    </div>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption"></div>
+        <button class="modal-nav prev">❮</button>
+        <button class="modal-nav next">❯</button>
     </div>
 
     <!-- Floating Birthday Elements -->
@@ -769,57 +270,6 @@
         <div class="floating-element">💝</div>
     </div>
 
-    <script>
-        // Enhanced animations with random delays
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add random animation delays to characteristic cards
-            const cards = document.querySelectorAll('.characteristic-card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-
-            // Add floating effect to favorite cards with different timings
-            const favoriteCards = document.querySelectorAll('.favorite-card');
-            favoriteCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.2}s`;
-            });
-
-            // Interactive photo effect
-            const photoFrame = document.querySelector('.photo-frame');
-            photoFrame.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.05) rotate(5deg)';
-            });
-            
-            photoFrame.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1) rotate(0deg)';
-            });
-
-            // Add age calculation
-            const birthDate = new Date(2005, 10, 1);
-            const today = new Date();
-            let age = today.getFullYear() - birthDate.getFullYear();
-            const monthDiff = today.getMonth() - birthDate.getMonth();
-            
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            
-            // Create and display age element
-            const ageElement = document.createElement('div');
-            ageElement.className = 'age-display';
-            ageElement.innerHTML = `
-                <div style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-                    <p style="font-size: 1.5rem; color: #ff6b6b; font-weight: bold;">
-                        Today you are <span style="font-size: 2rem; color: #4ecdc4;">${age}</span> years young!
-                    </p>
-                    <p style="margin-top: 10px; font-style: italic; color: #666;">
-                        "And you get more amazing every year! - Laddu"
-                    </p>
-                </div>
-            `;
-            
-            document.querySelector('main').insertBefore(ageElement, document.querySelector('.favorites-section'));
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
