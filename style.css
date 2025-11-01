@@ -1,392 +1,294 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Previous CSS remains the same, add these new Laddu styles */
 
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-    color: #333;
-    overflow-x: hidden;
-    min-height: 100vh;
-    position: relative;
-}
-
-/* Background Animation */
-.background-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.balloon {
-    position: absolute;
-    width: 40px;
-    height: 50px;
-    background: #ff6b6b;
-    border-radius: 50%;
-    animation: float 15s infinite ease-in-out;
-}
-
-.balloon:nth-child(1) {
-    left: 10%;
-    background: #ff6b6b;
-    animation-delay: 0s;
-}
-
-.balloon:nth-child(2) {
-    left: 30%;
-    background: #4ecdc4;
-    animation-delay: 3s;
-}
-
-.balloon:nth-child(3) {
-    left: 70%;
-    background: #ffe66d;
-    animation-delay: 6s;
-}
-
-.confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: #ff6b6b;
-    animation: fall 10s infinite linear;
-}
-
-.confetti:nth-child(4) {
-    left: 20%;
-    background: #4ecdc4;
-    animation-delay: 1s;
-}
-
-.confetti:nth-child(5) {
-    left: 50%;
-    background: #ffe66d;
-    animation-delay: 4s;
-}
-
-.confetti:nth-child(6) {
-    left: 80%;
-    background: #ff6b6b;
-    animation-delay: 7s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(100vh) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-100px) rotate(180deg);
-    }
-}
-
-@keyframes fall {
-    0% {
-        transform: translateY(-100px) rotate(0deg);
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-    }
-}
-
-/* Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Header */
-header {
+/* Laddu Header */
+.from-laddu-header {
     text-align: center;
-    margin-bottom: 40px;
-    padding: 20px;
+    margin-top: 15px;
 }
 
-.birthday-title {
-    font-size: 3.5rem;
-    color: #ff6b6b;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    animation: pulse 2s infinite;
-}
-
-.name {
-    color: #4ecdc4;
-    text-decoration: underline;
-}
-
-.birth-date {
+.laddu-signature {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
     font-size: 1.2rem;
-    color: #666;
-    font-style: italic;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    animation: ladduPulse 2s infinite;
 }
 
-@keyframes pulse {
+@keyframes ladduPulse {
     0%, 100% {
         transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
     }
     50% {
         transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
     }
 }
 
-/* Photo Section */
-.photo-section {
-    display: flex;
-    justify-content: center;
-    margin: 40px 0;
+/* Laddu Message under photo */
+.laddu-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.photo-frame {
+.laddu-message p {
+    font-size: 1.3rem;
+    color: #ff6b6b;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Section Headers with Laddu Badge */
+.section-header {
     position: relative;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    border: 8px solid #fff;
-    animation: floatPhoto 6s ease-in-out infinite;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.profile-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.laddu-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #4ecdc4, #6a89cc);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 10px;
+    box-shadow: 0 3px 10px rgba(78, 205, 196, 0.3);
+    animation: badgeFloat 4s ease-in-out infinite;
 }
 
-.photo-decoration {
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border: 3px solid #ff6b6b;
-    border-radius: 50%;
-    animation: rotate 10s linear infinite;
-}
-
-@keyframes floatPhoto {
+@keyframes badgeFloat {
     0%, 100% {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-20px);
+        transform: translateY(-5px);
     }
 }
 
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Zodiac Section */
-.zodiac-section {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    border-radius: 20px;
-    margin: 40px 0;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+/* Laddu Note in Gallery */
+.laddu-note {
     text-align: center;
-}
-
-.zodiac-section h2 {
-    color: #4ecdc4;
-    margin-bottom: 20px;
-    font-size: 2rem;
-}
-
-.zodiac-info p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    color: #555;
-}
-
-.zodiac-traits {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.trait {
-    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: bold;
-    box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
-}
-
-/* Attributes Section */
-.attributes-section {
-    margin: 40px 0;
-}
-
-.attributes-section h2 {
-    text-align: center;
-    color: #ff6b6b;
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-}
-
-.attributes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.attribute-card {
-    background: white;
-    padding: 25px;
+    margin: 20px 0 40px;
+    padding: 15px;
+    background: linear-gradient(135deg, #ffe66d, #ffd166);
     border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.attribute-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
-
-.attribute-card h3 {
-    color: #4ecdc4;
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-}
-
-.attribute-card p {
-    color: #666;
-    line-height: 1.5;
-}
-
-/* Good Things Section */
-.good-things-section {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 40px;
-    border-radius: 20px;
-    margin: 40px 0;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.good-things-section h2 {
-    text-align: center;
-    color: #ff6b6b;
-    margin-bottom: 30px;
-    font-size: 2.2rem;
-}
-
-.good-things-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.good-thing {
-    display: flex;
-    align-items: center;
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.good-thing:hover {
-    transform: scale(1.05);
-}
-
-.good-thing .icon {
-    font-size: 2rem;
-    margin-right: 15px;
-}
-
-.good-thing p {
-    color: #555;
-    font-size: 1.1rem;
-    line-height: 1.4;
-}
-
-/* Message Section */
-.message-section {
-    margin: 40px 0;
-}
-
-.birthday-message {
-    background: linear-gradient(135deg, #4ecdc4, #6a89cc);
-    color: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    text-align: center;
-}
-
-.birthday-message h2 {
-    margin-bottom: 20px;
-    font-size: 2rem;
-}
-
-.birthday-message p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-    font-size: 1.1rem;
-}
-
-.signature {
-    font-style: italic;
-    margin-top: 20px;
     font-size: 1.2rem;
-}
-
-/* Age Counter */
-.age-counter {
-    text-align: center;
-    margin: 30px 0;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.age-counter p {
-    font-size: 1.5rem;
-    color: #ff6b6b;
     font-weight: bold;
+    color: #333;
+    box-shadow: 0 5px 15px rgba(255, 230, 109, 0.3);
 }
 
-#age {
-    font-size: 2rem;
-    color: #4ecdc4;
-    animation: count 2s ease-in-out;
+.laddu-heart {
+    animation: heartBeat 1.5s infinite;
 }
 
-@keyframes count {
-    0% {
-        transform: scale(0);
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
     }
     50% {
-        transform: scale(1.5);
+        transform: scale(1.3);
+    }
+}
+
+/* Laddu Tags in Gallery Overlay */
+.laddu-tag {
+    font-size: 0.9rem;
+    color: #ffe66d;
+    margin-top: 5px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Laddu Comment in Zodiac */
+.laddu-comment {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border-left: 4px solid #ff6b6b;
+}
+
+.laddu-comment p {
+    font-style: italic;
+    color: #555;
+    text-align: center;
+    margin: 0;
+}
+
+/* Laddu Corner in Attribute Cards */
+.laddu-corner {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    animation: candySpin 3s infinite;
+}
+
+@keyframes candySpin {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(10deg) scale(1.2);
+    }
+}
+
+.laddu-note-small {
+    font-size: 0.8rem;
+    color: #ff6b6b;
+    font-style: italic;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Laddu Stamps in Good Things */
+.laddu-stamp {
+    font-size: 0.8rem;
+    color: #4ecdc4;
+    font-weight: bold;
+    margin-top: 8px;
+    text-align: right;
+    animation: stampAppear 0.5s ease-out;
+}
+
+@keyframes stampAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0);
     }
     100% {
+        opacity: 1;
         transform: scale(1);
     }
 }
 
-/* Floating Elements */
-.floating-elements {
+/* Message Section Laddu Styles */
+.message-header {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.laddu-signature-large {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: inline-block;
+    margin-top: 15px;
+    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+    animation: signatureGlow 2s infinite alternate;
+}
+
+@keyframes signatureGlow {
+    0% {
+        box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+    }
+    100% {
+        box-shadow: 0 5px 30px rgba(255, 107, 107, 0.7);
+    }
+}
+
+.personal-note {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 25px 0;
+    border: 2px dashed #ffe66d;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+}
+
+.laddu-name {
+    color: #ffe66d;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Age Counter Laddu Note */
+.laddu-age-note {
+    font-size: 0.9rem;
+    color: #4ecdc4;
+    font-style: italic;
+    margin-top: 10px;
+    font-weight: bold;
+    animation: ageNoteFloat 3s ease-in-out infinite;
+}
+
+@keyframes ageNoteFloat {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+}
+
+/* Footer */
+.website-footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.footer-hearts {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    animation: heartsFloat 4s ease-in-out infinite;
+}
+
+.footer-candy {
+    font-size: 1.5rem;
+    margin-top: 15px;
+    animation: candyBounce 2s infinite;
+}
+
+@keyframes heartsFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes candyBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Modal Laddu Tag */
+.modal-laddu-tag {
+    text-align: center;
+    color: #ffe66d;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Laddu Floating Elements */
+.laddu-elements {
     position: fixed;
     top: 0;
     left: 0;
@@ -396,71 +298,79 @@ header {
     z-index: -1;
 }
 
-.floating-element {
+.laddu-element {
     position: absolute;
-    font-size: 2rem;
-    animation: floatAround 20s infinite linear;
+    font-size: 1.2rem;
+    color: #ff6b6b;
+    font-weight: bold;
+    animation: ladduFloat 25s infinite linear;
+    opacity: 0.7;
 }
 
-.floating-element:nth-child(1) {
-    top: 10%;
-    left: 10%;
+.laddu-element:nth-child(1) {
+    top: 15%;
+    left: 5%;
     animation-delay: 0s;
 }
 
-.floating-element:nth-child(2) {
-    top: 20%;
-    left: 80%;
-    animation-delay: 5s;
+.laddu-element:nth-child(2) {
+    top: 25%;
+    left: 85%;
+    animation-delay: 8s;
 }
 
-.floating-element:nth-child(3) {
-    top: 70%;
-    left: 20%;
-    animation-delay: 10s;
+.laddu-element:nth-child(3) {
+    top: 75%;
+    left: 15%;
+    animation-delay: 16s;
 }
 
-.floating-element:nth-child(4) {
-    top: 80%;
-    left: 70%;
-    animation-delay: 15s;
-}
-
-@keyframes floatAround {
+@keyframes ladduFloat {
     0%, 100% {
         transform: translate(0, 0) rotate(0deg);
+        opacity: 0.7;
     }
     25% {
-        transform: translate(100px, 100px) rotate(90deg);
+        transform: translate(150px, 150px) rotate(90deg);
+        opacity: 1;
     }
     50% {
-        transform: translate(0, 200px) rotate(180deg);
+        transform: translate(0, 300px) rotate(180deg);
+        opacity: 0.7;
     }
     75% {
-        transform: translate(-100px, 100px) rotate(270deg);
+        transform: translate(-150px, 150px) rotate(270deg);
+        opacity: 1;
     }
 }
 
-/* Responsive Design */
+/* Update existing gallery items for Laddu tags */
+.gallery-item .photo-overlay {
+    padding-bottom: 40px;
+}
+
+/* Responsive updates */
 @media (max-width: 768px) {
-    .birthday-title {
-        font-size: 2.5rem;
+    .laddu-signature {
+        font-size: 1rem;
+        padding: 8px 20px;
     }
     
-    .photo-frame {
-        width: 250px;
-        height: 250px;
+    .laddu-message p {
+        font-size: 1.1rem;
     }
     
-    .attributes-grid {
-        grid-template-columns: 1fr;
+    .laddu-note {
+        font-size: 1rem;
+        padding: 12px;
     }
     
-    .good-things-list {
-        grid-template-columns: 1fr;
+    .laddu-signature-large {
+        font-size: 1.1rem;
+        padding: 10px 25px;
     }
     
-    .birthday-message {
-        padding: 20px;
+    .laddu-element {
+        font-size: 1rem;
     }
 }
