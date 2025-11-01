@@ -1,84 +1,189 @@
-// Previous JavaScript remains the same, add these Laddu-specific functions
+// Calculate Aastha's current age
+function calculateAge() {
+    const birthDate = new Date(2005, 10, 1); // November 1, 2005 (month is 0-indexed)
+    const today = new Date();
+    
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    
+    // If birthday hasn't occurred this year yet, subtract 1
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    
+    return age;
+}
 
-// Laddu special effects
-function addLadduSpecialEffects() {
-    // Add Laddu candy cursor effect
-    document.addEventListener('mousemove', function(e) {
-        if (Math.random() < 0.02) { // 2% chance to create candy
-            createFloatingCandy(e.clientX, e.clientY);
+// Update age in the DOM
+function updateAge() {
+    const ageElement = document.getElementById('age');
+    const age = calculateAge();
+    ageElement.textContent = age;
+}
+
+// Gallery functionality
+function initializeGallery() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const modal = document.getElementById('photoModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeModal = document.querySelector('.close-modal');
+    const prevBtn = document.querySelector('.modal-nav.prev');
+    const nextBtn = document.querySelector('.modal-nav.next');
+    
+    let currentIndex = 0;
+    const images = Array.from(galleryItems).map(item => ({
+        src: item.querySelector('img').src,
+        caption: item.querySelector('.photo-overlay span').textContent
+    }));
+
+    // Open modal on gallery item click
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentIndex = index;
+            openModal();
+        });
+    });
+
+    function openModal() {
+        modal.style.display = 'block';
+        updateModalContent();
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    function closeModalFunc() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    }
+
+    function updateModalContent() {
+        modalImg.src = images[currentIndex].src;
+        modalCaption.textContent = images[currentIndex].caption;
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateModalContent();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateModalContent();
+    }
+
+    // Event listeners
+    closeModal.addEventListener('click', closeModalFunc);
+    nextBtn.addEventListener('click', showNext);
+    prevBtn.addEventListener('click', showPrev);
+
+    // Close modal when clicking outside the image
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModalFunc();
         }
     });
 
-    // Add Laddu love notes that appear randomly
-    setInterval(createLoveNote, 10000); // Every 10 seconds
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (modal.style.display === 'block') {
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'Escape') closeModalFunc();
+        }
+    });
+
+    // Add swipe support for touch devices
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    modal.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    modal.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                showNext(); // Swipe left
+            } else {
+                showPrev(); // Swipe right
+            }
+        }
+    }
 }
 
-function createFloatingCandy(x, y) {
-    const candies = ['🍬', '🍭', '🍫', '💝', '💖'];
-    const candy = candies[Math.floor(Math.random() * candies.length)];
+// Add interactive effects
+function addInteractiveEffects() {
+    // Add random animation delays to characteristic cards
+    const cards = document.querySelectorAll('.characteristic-card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+
+    // Add floating effect to favorite cards with different timings
+    const favoriteCards = document.querySelectorAll('.favorite-card');
+    favoriteCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+    });
+
+    // Interactive photo effect
+    const photoFrame = document.querySelector('.photo-frame');
+    photoFrame.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05) rotate(5deg)';
+    });
     
-    const candyElement = document.createElement('div');
-    candyElement.textContent = candy;
-    candyElement.style.cssText = `
-        position: fixed;
-        left: ${x}px;
-        top: ${y}px;
-        font-size: 1.5rem;
-        pointer-events: none;
-        z-index: 100;
-        animation: candyFloat 2s ease-out forwards;
-    `;
-    
-    document.body.appendChild(candyElement);
-    
-    setTimeout(() => {
-        document.body.removeChild(candyElement);
-    }, 2000);
+    photoFrame.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) rotate(0deg)';
+    });
+
+    // Add click effects to gallery items
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
 }
 
-function createLoveNote() {
-    const loveMessages = [
-        "Laddu loves Aastha!",
-        "You're my everything!",
-        "My beautiful Aastha 💝",
-        "Love you forever!",
-        "You make me so happy!",
-        "My sweet Aastha 🍬"
-    ];
-    
-    const message = loveMessages[Math.floor(Math.random() * loveMessages.length)];
-    
-    const note = document.createElement('div');
-    note.textContent = message;
-    note.style.cssText = `
-        position: fixed;
-        right: 20px;
-        top: ${100 + Math.random() * 200}px;
-        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 20px;
-        font-weight: bold;
-        box-shadow: 0 5px 15px rgba(255,107,107,0.4);
-        z-index: 1000;
-        animation: loveNoteSlide 4s ease-in-out forwards;
-    `;
-    
-    document.body.appendChild(note);
-    
-    setTimeout(() => {
-        note.style.animation = 'loveNoteFadeOut 0.5s ease-out forwards';
+// Create floating balloons on click
+function createFloatingBalloons() {
+    document.addEventListener('click', function(e) {
+        const balloons = ['🎈', '🎈', '🎈', '🎈', '🎈'];
+        const balloon = balloons[Math.floor(Math.random() * balloons.length)];
+        
+        const balloonElement = document.createElement('div');
+        balloonElement.textContent = balloon;
+        balloonElement.style.cssText = `
+            position: fixed;
+            left: ${e.clientX}px;
+            top: ${e.clientY}px;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 100;
+            animation: floatUp 3s ease-out forwards;
+        `;
+        
+        document.body.appendChild(balloonElement);
+        
         setTimeout(() => {
-            document.body.removeChild(note);
-        }, 500);
-    }, 3500);
-}
-
-// Add Laddu CSS animations
-function addLadduAnimations() {
+            document.body.removeChild(balloonElement);
+        }, 3000);
+    });
+    
+    // Add animation for click balloons
     const style = document.createElement('style');
     style.textContent = `
-        @keyframes candyFloat {
+        @keyframes floatUp {
             0% {
                 transform: translateY(0) scale(1);
                 opacity: 1;
@@ -88,157 +193,12 @@ function addLadduAnimations() {
                 opacity: 0;
             }
         }
-        
-        @keyframes loveNoteSlide {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            20% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            80% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-        
-        @keyframes loveNoteFadeOut {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
-        }
     `;
     document.head.appendChild(style);
 }
 
-// Laddu's special birthday surprise
-function addLadduSurprise() {
-    const surpriseButton = document.createElement('button');
-    surpriseButton.textContent = '💝 Laddu\'s Special Surprise 💝';
-    surpriseButton.className = 'laddu-surprise-btn';
-    surpriseButton.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-        color: white;
-        border: none;
-        padding: 15px 25px;
-        border-radius: 25px;
-        font-weight: bold;
-        font-size: 1.1rem;
-        cursor: pointer;
-        box-shadow: 0 5px 20px rgba(255,107,107,0.4);
-        z-index: 1000;
-        transition: all 0.3s ease;
-    `;
-    
-    surpriseButton.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.1)';
-        this.style.boxShadow = '0 8px 25px rgba(255,107,107,0.6)';
-    });
-    
-    surpriseButton.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-        this.style.boxShadow = '0 5px 20px rgba(255,107,107,0.4)';
-    });
-    
-    surpriseButton.addEventListener('click', showLadduSurprise);
-    
-    document.body.appendChild(surpriseButton);
-}
-
-function showLadduSurprise() {
-    const surpriseModal = document.createElement('div');
-    surpriseModal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.9);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-        animation: surpriseFadeIn 0.5s ease;
-    `;
-    
-    surpriseModal.innerHTML = `
-        <div class="surprise-content" style="
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            padding: 40px;
-            border-radius: 30px;
-            text-align: center;
-            color: white;
-            max-width: 500px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            animation: surprisePopIn 0.5s ease;
-        ">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">💖 For My Aastha 💖</h2>
-            <p style="font-size: 1.3rem; line-height: 1.6; margin-bottom: 25px;">
-                You're the most amazing person I've ever known. 
-                Every moment with you is precious, and I feel so lucky to have you in my life. 
-                Happy Birthday to the love of my life! 🎂💝
-            </p>
-            <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 30px;">
-                Forever yours,<br>Your Laddu 🍬
-            </p>
-            <button onclick="this.parentElement.parentElement.remove()" style="
-                background: white;
-                color: #ff6b6b;
-                border: none;
-                padding: 12px 30px;
-                border-radius: 25px;
-                font-weight: bold;
-                font-size: 1.1rem;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            ">Close</button>
-        </div>
-    `;
-    
-    document.body.appendChild(surpriseModal);
-    
-    // Add surprise animation styles
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes surpriseFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes surprisePopIn {
-            from { transform: scale(0.5); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// Initialize all functions when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    updateAge();
-    addInteractiveMessage();
-    addAnimationStyles();
-    createFloatingBalloons();
-    addBirthdayMusic();
-    initializeGallery();
-    addGalleryAnimations();
-    addLadduSpecialEffects();
-    addLadduAnimations();
-    addLadduSurprise();
-    
-    // Add a birthday countdown if it's not her birthday
+// Add birthday countdown
+function addBirthdayCountdown() {
     const today = new Date();
     const isBirthday = today.getMonth() === 10 && today.getDate() === 1; // November 1
     
@@ -254,18 +214,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const countdownElement = document.createElement('div');
         countdownElement.className = 'countdown';
         countdownElement.innerHTML = `
-            <p>Only <span>${diffDays}</span> days until Aastha's next birthday! 🎂</p>
-            <div class="laddu-countdown-note">"Can't wait to celebrate with you! - Laddu"</div>
+            <p>Only <span style="color: var(--accent); font-weight: bold; font-size: 1.5rem;">${diffDays}</span> days until Aastha's next birthday! 🎂</p>
         `;
         countdownElement.style.cssText = `
             text-align: center;
-            margin: 20px 0;
-            padding: 15px;
+            margin: 30px 0;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
         `;
         
-        document.querySelector('.container').appendChild(countdownElement);
+        const ageCounter = document.querySelector('.age-counter');
+        ageCounter.parentNode.insertBefore(countdownElement, ageCounter);
     }
+}
+
+// Initialize all functions when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    updateAge();
+    initializeGallery();
+    addInteractiveEffects();
+    createFloatingBalloons();
+    addBirthdayCountdown();
 });
